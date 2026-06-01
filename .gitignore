@@ -3,3 +3,6 @@
 out/
 target/
 *.class
+*.jar
+.DS_Store
+audit.csv
