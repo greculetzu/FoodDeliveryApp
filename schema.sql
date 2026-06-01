@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS menu_items (
     name VARCHAR(255) NOT NULL,
     price DOUBLE PRECISION NOT NULL,
     description TEXT,
-    type VARCHAR(20) NOT NULL,         -- 'FOOD' or 'DRINK'
+    type VARCHAR(20) NOT NULL,         -- 'FoodItem' or 'DrinkItem'
     calories INT,                      -- only for FoodItem
     is_vegetarian BOOLEAN,             -- only for FoodItem
     volume_ml INT,                     -- only for DrinkItem
