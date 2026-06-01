@@ -80,6 +80,28 @@ public class CustomerRepository extends GenericRepository<Customer> {
         return list;
     }
 
+    public List<Courier> findAllCouriers() {
+        String sql = "SELECT id, name, email, phone, vehicle_type, is_available " +
+                     "FROM users WHERE role = 'COURIER'";
+        List<Courier> list = new ArrayList<>();
+        try (ResultSet rs = executeQuery(sql)) {
+            while (rs != null && rs.next()) {
+                Courier c = new Courier(
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("phone"),
+                        rs.getString("vehicle_type")
+                );
+                c.setAvailable(rs.getBoolean("is_available"));
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.err.println("[CustomerRepository] findAllCouriers failed: " + e.getMessage());
+        }
+        return list;
+    }
+
     public void update(Customer c) {
         String addrId = null;
         try (ResultSet rs = executeQuery("SELECT default_address_id FROM users WHERE id = ?", c.getUserId())) {

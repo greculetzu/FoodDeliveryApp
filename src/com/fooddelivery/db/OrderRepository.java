@@ -66,6 +66,23 @@ public class OrderRepository extends GenericRepository<Order> {
         }
     }
 
+    public List<Order> findAll() {
+        String sql = "SELECT o.id, o.customer_id, o.restaurant_id, o.courier_id, " +
+                     "o.status, o.placed_at, a.street, a.city, a.postal_code " +
+                     "FROM orders o LEFT JOIN addresses a ON o.delivery_address_id = a.id";
+        List<Order> list = new ArrayList<>();
+        try (ResultSet rs = executeQuery(sql)) {
+            while (rs != null && rs.next()) {
+                Order order = mapRow(rs);
+                order.getItems().addAll(loadItems(order.getOrderId()));
+                list.add(order);
+            }
+        } catch (SQLException e) {
+            System.err.println("[OrderRepository] findAll failed: " + e.getMessage());
+        }
+        return list;
+    }
+
     public Optional<Order> findById(String id) {
         String sql = "SELECT o.id, o.customer_id, o.restaurant_id, o.courier_id, " +
                      "o.status, o.placed_at, a.street, a.city, a.postal_code " +

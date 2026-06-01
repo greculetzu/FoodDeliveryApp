@@ -46,4 +46,12 @@ public class UserService {
 
     public List<Customer> getAllCustomers() { return customers; }
     public List<Courier> getAllCouriers() { return couriers; }
+
+    public void loadCustomer(Customer customer) {
+        if (getCustomerById(customer.getUserId()) == null) customers.add(customer);
+    }
+
+    public void loadCourier(Courier courier) {
+        if (getCourierById(courier.getUserId()) == null) couriers.add(courier);
+    }
 }

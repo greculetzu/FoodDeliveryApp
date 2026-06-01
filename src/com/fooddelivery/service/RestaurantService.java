@@ -56,6 +56,10 @@ public class RestaurantService {
         }
     }
 
+    public void loadRestaurant(Restaurant restaurant) {
+        if (getRestaurantById(restaurant.getRestaurantId()) == null) restaurants.add(restaurant);
+    }
+
     public void addReview(String restaurantId, Review review) {
         AuditService.getInstance().log("ADD_REVIEW");
         Restaurant r = getRestaurantById(restaurantId);

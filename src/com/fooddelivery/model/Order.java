@@ -58,7 +58,7 @@ public class Order {
     @Override
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return "Order{id='" + orderId.substring(0, 8) + "...', status=" + status
+        return "Order{id='" + orderId + "', status=" + status
                 + ", total=" + String.format("%.2f", calculateTotal()) + " RON"
                 + ", placedAt=" + placedAt.format(fmt) + "}";
     }

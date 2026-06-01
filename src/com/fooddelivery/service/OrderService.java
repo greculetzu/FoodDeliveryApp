@@ -38,7 +38,7 @@ public class OrderService {
             order.setCourierId(courier.getUserId());
             courier.setAvailable(false);
             System.out.println("[OrderService] Curier " + courier.getName()
-                    + " asignat la comanda " + orderId.substring(0, 8) + "...");
+                    + " asignat la comanda " + orderId);
         }
     }
 
@@ -48,7 +48,7 @@ public class OrderService {
         if (order != null) {
             order.setStatus(newStatus);
             System.out.println("[OrderService] Status actualizat -> " + newStatus
-                    + " pentru comanda " + orderId.substring(0, 8) + "...");
+                    + " pentru comanda " + orderId);
         }
     }
 
@@ -63,6 +63,14 @@ public class OrderService {
         AuditService.getInstance().log("CALCULATE_TOTAL");
         Order order = orders.get(orderId);
         return order != null ? order.calculateTotal() : 0.0;
+    }
+
+    public void addOrder(Order order) {
+        if (!orders.containsKey(order.getOrderId())) orders.put(order.getOrderId(), order);
+    }
+
+    public List<Order> getAllOrders() {
+        return new java.util.ArrayList<>(orders.values());
     }
 
     public Order getOrderById(String orderId) {
