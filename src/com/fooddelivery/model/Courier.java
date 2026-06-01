@@ -12,6 +12,7 @@ public class Courier extends User {
 
     public String getVehicleType() { return vehicleType; }
     public boolean isAvailable() { return available; }
+    public void setVehicleType(String vehicleType) { this.vehicleType = vehicleType; }
     public void setAvailable(boolean available) { this.available = available; }
 
     @Override

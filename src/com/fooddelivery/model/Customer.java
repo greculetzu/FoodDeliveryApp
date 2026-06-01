@@ -15,6 +15,7 @@ public class Customer extends User {
 
     public Address getDefaultAddress() { return defaultAddress; }
     public List<String> getOrderIds() { return orderIds; }
+    public void setDefaultAddress(Address defaultAddress) { this.defaultAddress = defaultAddress; }
 
     public void addOrderId(String orderId) { orderIds.add(orderId); }
 

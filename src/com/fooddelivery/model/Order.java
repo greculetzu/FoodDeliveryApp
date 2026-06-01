@@ -36,6 +36,7 @@ public class Order {
 
     public void setCourierId(String courierId) { this.courierId = courierId; }
     public void setStatus(OrderStatus status) { this.status = status; }
+    public void setDeliveryAddress(Address deliveryAddress) { this.deliveryAddress = deliveryAddress; }
 
     public double calculateTotal() {
         return items.stream().mapToDouble(OrderItem::getSubtotal).sum();

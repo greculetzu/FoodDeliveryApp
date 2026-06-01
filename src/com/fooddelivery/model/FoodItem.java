@@ -12,6 +12,8 @@ public class FoodItem extends MenuItem {
 
     public int getCalories() { return calories; }
     public boolean isVegetarian() { return vegetarian; }
+    public void setCalories(int calories) { this.calories = calories; }
+    public void setVegetarian(boolean vegetarian) { this.vegetarian = vegetarian; }
 
     @Override
     public String getType() { return "FoodItem"; }

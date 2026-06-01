@@ -29,6 +29,9 @@ public class Restaurant implements Comparable<Restaurant> {
     public Address getAddress() { return address; }
     public List<MenuItem> getMenu() { return menu; }
     public List<Review> getReviews() { return reviews; }
+    public void setName(String name) { this.name = name; }
+    public void setCategory(Category category) { this.category = category; }
+    public void setAddress(Address address) { this.address = address; }
 
     public void addMenuItem(MenuItem item) { menu.add(item); }
 

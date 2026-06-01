@@ -11,6 +11,7 @@ public class OrderItem {
 
     public MenuItem getMenuItem() { return menuItem; }
     public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
     public double getSubtotal() { return menuItem.getPrice() * quantity; }
 
