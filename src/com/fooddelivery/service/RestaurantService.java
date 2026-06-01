@@ -1,10 +1,12 @@
 package com.fooddelivery.service;
 
+import com.fooddelivery.audit.AuditService;
 import com.fooddelivery.model.Category;
 import com.fooddelivery.model.MenuItem;
 import com.fooddelivery.model.Restaurant;
 import com.fooddelivery.model.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -14,15 +16,18 @@ public class RestaurantService {
     private TreeSet<Restaurant> restaurants = new TreeSet<>();
 
     public void addRestaurant(Restaurant restaurant) {
+        AuditService.getInstance().log("REGISTER_RESTAURANT");
         restaurants.add(restaurant);
         System.out.println("[RestaurantService] Restaurant adaugat: " + restaurant.getName());
     }
 
     public TreeSet<Restaurant> getRestaurantsSortedByRating() {
+        AuditService.getInstance().log("VIEW_RESTAURANTS_BY_RATING");
         return restaurants;
     }
 
     public List<Restaurant> getRestaurantsByCategory(Category category) {
+        AuditService.getInstance().log("SEARCH_BY_CATEGORY");
         return restaurants.stream()
                 .filter(r -> r.getCategory() == category)
                 .collect(Collectors.toList());
@@ -35,7 +40,14 @@ public class RestaurantService {
                 .orElse(null);
     }
 
+    public List<MenuItem> getMenu(String restaurantId) {
+        AuditService.getInstance().log("VIEW_MENU");
+        Restaurant r = getRestaurantById(restaurantId);
+        return r != null ? r.getMenu() : new ArrayList<>();
+    }
+
     public void addMenuItemToRestaurant(String restaurantId, MenuItem item) {
+        AuditService.getInstance().log("ADD_MENU_ITEM");
         Restaurant r = getRestaurantById(restaurantId);
         if (r != null) {
             r.addMenuItem(item);
@@ -45,6 +57,7 @@ public class RestaurantService {
     }
 
     public void addReview(String restaurantId, Review review) {
+        AuditService.getInstance().log("ADD_REVIEW");
         Restaurant r = getRestaurantById(restaurantId);
         if (r != null) {
             // Scoatem din TreeSet, actualizam ratingul, reinserăm (ordinea se recalculeaza)

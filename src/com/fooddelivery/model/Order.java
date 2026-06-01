@@ -25,6 +25,19 @@ public class Order {
         this.placedAt = LocalDateTime.now();
     }
 
+    public Order(String orderId, String customerId, String restaurantId, String courierId,
+                 List<OrderItem> items, Address deliveryAddress,
+                 OrderStatus status, LocalDateTime placedAt) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.restaurantId = restaurantId;
+        this.courierId = courierId;
+        this.items = items;
+        this.deliveryAddress = deliveryAddress;
+        this.status = status;
+        this.placedAt = placedAt;
+    }
+
     public String getOrderId() { return orderId; }
     public String getCustomerId() { return customerId; }
     public String getRestaurantId() { return restaurantId; }

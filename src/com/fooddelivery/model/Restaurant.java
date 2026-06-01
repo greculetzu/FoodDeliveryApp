@@ -32,6 +32,7 @@ public class Restaurant implements Comparable<Restaurant> {
     public void setName(String name) { this.name = name; }
     public void setCategory(Category category) { this.category = category; }
     public void setAddress(Address address) { this.address = address; }
+    public void setRating(double rating) { this.rating = rating; }
 
     public void addMenuItem(MenuItem item) { menu.add(item); }
 

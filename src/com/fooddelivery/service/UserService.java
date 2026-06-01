@@ -1,5 +1,6 @@
 package com.fooddelivery.service;
 
+import com.fooddelivery.audit.AuditService;
 import com.fooddelivery.model.Courier;
 import com.fooddelivery.model.Customer;
 
@@ -12,11 +13,13 @@ public class UserService {
     private List<Courier> couriers = new ArrayList<>();
 
     public void addCustomer(Customer customer) {
+        AuditService.getInstance().log("REGISTER_CUSTOMER");
         customers.add(customer);
         System.out.println("[UserService] Client inregistrat: " + customer.getName());
     }
 
     public void addCourier(Courier courier) {
+        AuditService.getInstance().log("REGISTER_COURIER");
         couriers.add(courier);
         System.out.println("[UserService] Curier inregistrat: " + courier.getName());
     }
